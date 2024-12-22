@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommunityController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::resource('community', CommunityController::class);
