@@ -25,5 +25,4 @@
 @endsection
 
 @section('login')
-<!-- Biarkan kosong -->
 @endsection

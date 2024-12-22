@@ -22,5 +22,4 @@
 @endsection
 
 @section('register')
-<!-- Biarkan kosong -->
 @endsection

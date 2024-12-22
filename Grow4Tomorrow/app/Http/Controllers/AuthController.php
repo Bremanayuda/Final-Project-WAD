@@ -11,16 +11,16 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    // Menampilkan halaman login dan register 
+
     public function showAuthForm()
     {
         return view('auth.auth');
     }
 
-    // Proses login
+
     public function login(Request $request)
     {
-        // Validasi input
+     
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -36,10 +36,9 @@ class AuthController extends Controller
         ]);
     }
 
-    // Proses register
     public function register(Request $request)
     {
-        // Validasi input
+       
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:akun,email',
             'name' => 'required|string|max:255',
@@ -52,7 +51,7 @@ class AuthController extends Controller
                              ->withInput();
         }
 
-        // Membuat akun baru
+        
         Akun::create([
             'email' => $request->email,
             'name' => $request->name,
