@@ -114,7 +114,7 @@
                         <li class="nav-item"><a class="nav-link" href="/dashboard">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="/education">Education</a></li>
                         <li class="nav-item"><a class="nav-link" href="/benefits">Benefits</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/community">Community</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/forums">Community</a></li>
                         <li class="nav-item"><a class="nav-link" href="/shop">Shop</a></li>
                         <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
                     </ul>

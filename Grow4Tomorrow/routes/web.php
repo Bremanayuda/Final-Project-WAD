@@ -6,6 +6,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ForumController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -37,4 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
+
+Route::resource('forums', ForumController::class);
+Route::post('forums/{forum}/comments', [ForumController::class, 'storeComment'])->name('forums.comments.store');
+Route::get('/forums/{id}/export-pdf', [ForumController::class, 'exportToPDF'])->name('forums.export-pdf');
 
