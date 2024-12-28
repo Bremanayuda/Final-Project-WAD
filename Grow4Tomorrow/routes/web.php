@@ -5,9 +5,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EducationController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 #Login dan register
@@ -30,3 +31,10 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::resource('education', EducationController::class)->middleware('auth');
 Route::get('/education', [EducationController::class, 'index'])->name('education.index');
 Route::get('education/{id}', [EducationController::class, 'show'])->name('education.show');
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+});
+
