@@ -1,38 +1,51 @@
-@extends('layout.main')
-@section('title', 'My Account')
+@extends('layouts.app')
+
 @section('content')
-
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-  <div class="jumbotron text-center">
-  <h1>Hydroponic</h1>
-  <img src="{{ asset('images/tanaman hidroponik.jpg') }}" alt="Grow4Tomorrow Logo" style="height: 100px;">
-  <p>Resize this responsive page to see the effect!</p> 
-</div>
-  
 <div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <h3>Column 1</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+    <a href="{{ route('education.create') }}" class="btn btn-primary mb-4">Buat Artikel</a>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Image</th>
+                    <th>Judul</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php
+                    $no = 1;
+                @endphp
+                @foreach ($education as $item)
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>
+                            
+                            <img src="{{ asset('storage/'.$item->image) }}" class="img-thumbnail" height="100px" alt="{{ $item->judul }}">
+                        </td>
+                        <td>
+                            {{ $item->judul }}
+                        </td>
+                        <td>
+                            
+                            <a href="{{ route('education.show', $item->id) }}" class="btn btn-info btn-sm">Lihat</a>
+
+                            
+                            <a href="{{ route('education.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+
+                            
+                            <form action="{{ route('education.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus artikel ini?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
-    <div class="col-sm-4">
-      <h3>Column 2</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-    <div class="col-sm-4">
-      <h3>Column 3</h3>        
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-  </div>
 </div>
 @endsection

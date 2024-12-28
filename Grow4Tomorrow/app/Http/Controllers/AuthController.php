@@ -17,25 +17,6 @@ class AuthController extends Controller
         return view('auth.auth');
     }
 
-
-    public function login(Request $request)
-    {
-     
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/');
-        }
-
-        return back()->withErrors([
-            'email' => 'Email atau password salah.',
-        ]);
-    }
-
     public function register(Request $request)
     {
        
@@ -52,12 +33,32 @@ class AuthController extends Controller
         }
 
         
-        Akun::create([
+        $akun =Akun::create([
             'email' => $request->email,
             'name' => $request->name,
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('auth')->with('success', 'Registration successful');
+        Auth::login($akun); 
+        return redirect('/dashboard');
+    }
+
+    public function login(Request $request)
+    {
+     
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (Auth::guard('web')->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('/dashboard');
+        }
+
+        return back()->withErrors([
+            'email' => 'Email atau password salah.',
+        ]);
     }
 }
+    
