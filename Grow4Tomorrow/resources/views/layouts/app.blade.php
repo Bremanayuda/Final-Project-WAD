@@ -2,59 +2,144 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grow4Tomorrow Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #000;
-            color: #fff;
-        }
-        .navbar {
-            background-color: #004d00;
-        }
-        .container {
-            margin-top: 50px;
-        }
-        .form-container {
-            background-color: #1a1a1a;
-            padding: 20px;
-            border-radius: 8px;
-        }
-        .form-container h2 {
-            color: #fff;
-        }
-        .btn-green {
-            background-color: #00b33c;
-            color: #fff;
-        }
-        .btn-green:hover {
-            background-color: #009933;
-        }
-    </style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grow4Tomorrow - @yield('title')</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    body {
+        background-image: url('{{ asset('images/background_g4.png') }}');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        margin: 0;
+        color: #333;
+    }
+
+    img {
+            border: 5px solid #e0e0e0;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .navbar {
+        background-color: rgba(0, 60, 0, 0.8);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    }
+    .navbar .nav-link {
+        color: #e6e6e6; 
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+
+    .container {
+        margin-top: 50px;
+    }
+
+    .main-section {
+        background-color: #f5f5f5;
+        text-align: center;
+        padding: 50px 20px;
+    }
+
+    .main-section img {
+        max-width: 100px;
+        margin-bottom: 20px;
+    }
+
+    .main-section h5 {
+        font-size: 1.2rem;
+        color: #666;
+    }
+
+    footer {
+        background-color: #e6e6e6;
+        text-align: center;
+        padding: 10px 0;
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    .scroll-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #00b33c;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        display: none; 
+    }
+
+    .scroll-to-top:hover {
+        background-color: #009933;
+    }
+</style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">   
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('images/logo.jpeg') }}" alt="Grow4Tomorrow Logo" style="height: 80px;">
+                <img src="{{ asset('images/newlogo.jpeg') }}" alt="Grow4Tomorrow Logo" style="height: 50px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/dashboard">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Education</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Benefits</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Community</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/forums">Community</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    @yield('content')
 
+    <div class="container mt-5">
+        @yield('content')
+    </div>
+
+    <!-- Main Section -->
+    <div class="main-section" style="text-align: center; padding: 10px 0; font-size: 14px;">
+        <img src="{{ asset('images/newlogo.jpeg') }}" alt="Grow4Tomorrow Logo" style="width: 100px; margin-bottom: 10px;">
+        
+        <p style="font-size: 15px; color: #666; margin-top: 5px;">Green Technology for Better Cities</p>
+    </div>
+
+    <!-- Footer -->
+    <footer style="font-size: 0.7rem; padding: 5px 0; text-align: center;">
+        &copy; 2024 Grow4Tomorrow
+    </footer>
+
+    <!-- Tombol Scroll ke Atas -->
+    <button class="scroll-to-top" id="scrollToTopBtn">↑</button>
+
+    <script>
+        // Menampilkan tombol saat scroll ke bawah
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                scrollToTopBtn.style.display = 'flex';
+            } else {
+                scrollToTopBtn.style.display = 'none';
+            }
+        });
+
+        // Fungsi untuk scroll ke atas
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
 </html>
