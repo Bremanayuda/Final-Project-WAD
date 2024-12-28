@@ -87,7 +87,7 @@
     </div>
 
     <style>
-        /* Kotak di sekitar bagian */
+
         .border-box {
             border: 3px solid #2d6a4f;
             border-radius: 10px;
@@ -96,8 +96,14 @@
             margin-bottom: 30px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
+        .card-img-top {
+        transition: transform 0.5s ease-in-out;
+        }
 
-        /* Styling bagian konten */
+        .card-img-top:hover {
+        transform: scale(1.2);
+        }
+
         .content-box h2 {
             color: #2d6a4f;
             font-weight: bold;
@@ -110,7 +116,6 @@
             margin-bottom: 10px;
         }
 
-        /* Styling gambar */
         img {
             border: 5px solid #e0e0e0;
             border-radius: 10px;

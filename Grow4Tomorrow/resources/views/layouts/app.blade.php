@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grow4Tomorrow - @yield('title')</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         html, body {
-            height: 100%; /* Pastikan seluruh halaman menggunakan tinggi penuh */
+            height: 100%; 
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -16,7 +17,7 @@
         .wrapper {
             display: flex;
             flex-direction: column;
-            flex: 1; /* Konten utama akan mengambil ruang yang tersedia */
+            flex: 1; 
         }
 
         body {
@@ -46,7 +47,7 @@
 
         .container {
             margin-top: 50px;
-            flex: 1; /* Pastikan konten utama mengisi ruang fleksibel */
+            flex: 1; 
         }
 
         .main-section {
@@ -97,9 +98,9 @@
     </style>
 </head>
 <body>
-    <!-- Wrapper utama -->
+
     <div class="wrapper">
-        <!-- Navbar -->
+  
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
@@ -113,11 +114,11 @@
                         <li class="nav-item"><a class="nav-link" href="/dashboard">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="/education">Education</a></li>
                         <li class="nav-item"><a class="nav-link" href="/benefits">Benefits</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/community">Community</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/forums">Community</a></li>
                         <li class="nav-item"><a class="nav-link" href="/shop">Shop</a></li>
                         <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
                     </ul>
-                    <!-- Tombol Logout -->
+               
                     <form method="POST" action="{{ route('logout') }}" style="display: inline; margin-left: auto;">
                         @csrf
                         <button type="submit" class="btn btn-link text-decoration-none" style="color: #e6e6e6; font-size: 0.9rem; padding: 0; border: none; background: none;">
@@ -128,12 +129,10 @@
             </div>
         </nav>
 
-        <!-- Konten Utama -->
         <div class="container">
             @yield('content')
         </div>
 
-        <!-- Main Section -->
         <div class="main-section" style="text-align: center; padding: 10px 0; font-size: 14px;">
         <img src="{{ asset('images/logo.jpg') }}" alt="Grow4Tomorrow Logo" style="width: 100px; margin-bottom: 10px;">
         
@@ -141,16 +140,14 @@
     </div>
 
 
-    <!-- Footer -->
     <footer style="font-size: 0.7rem; padding: 5px 0; text-align: center;">
         &copy; 2024 Grow4Tomorrow
     </footer>
 
-    <!-- Tombol Scroll ke Atas -->
     <button class="scroll-to-top" id="scrollToTopBtn">↑</button>
 
     <script>
-        // Menampilkan tombol saat scroll ke bawah
+
         const scrollToTopBtn = document.getElementById('scrollToTopBtn');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 100) {
@@ -160,7 +157,6 @@
             }
         });
 
-        // Fungsi untuk scroll ke atas
         scrollToTopBtn.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
@@ -168,5 +164,12 @@
             });
         });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js">
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7USCnXl1h5ywQfKt5j8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous">
+    </script >
+
 </body>
 </html>

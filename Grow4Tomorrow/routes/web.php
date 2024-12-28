@@ -4,9 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EducationController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ForumController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 #Login dan register
@@ -25,4 +28,18 @@ Route::post('/logout', function () {
 
 #Route Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+
+Route::resource('education', EducationController::class)->middleware('auth');
+Route::get('/education', [EducationController::class, 'index'])->name('education.index');
+Route::get('education/{id}', [EducationController::class, 'show'])->name('education.show');
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+});
+
+Route::resource('forums', ForumController::class);
+Route::post('forums/{forum}/comments', [ForumController::class, 'storeComment'])->name('forums.comments.store');
+Route::get('/forums/{id}/export-pdf', [ForumController::class, 'exportToPDF'])->name('forums.export-pdf');
 

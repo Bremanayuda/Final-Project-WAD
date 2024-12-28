@@ -107,7 +107,6 @@
             width: 100%;
         }
 
-        /* Styling untuk "My Account" */
         .page-title {
             font-size: 3rem;
             font-weight: bold;
@@ -116,23 +115,23 @@
             margin-bottom: 40px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            background-image: linear-gradient(to right, #00b33c, #009933); /* Gradien hijau */
+            background-image: linear-gradient(to right, #00b33c, #009933); 
             -webkit-background-clip: text;
             background-clip: text;
-            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); /* Efek bayangan */
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); 
         }
 
         /* Footer */
         footer {
             background-color: #e6e6e6;
-            padding: 5px 0;  /* Mengurangi padding atas dan bawah */
+            padding: 5px 0;  
             color: #666;
-            font-size: 0.7rem;  /* Memperkecil ukuran font */
+            font-size: 0.7rem;  
             text-align: center;
         }
 
         footer img {
-            max-width: 40px;  /* Memperkecil ukuran logo */
+            max-width: 40px;  
             margin-bottom: 5px;
         }
 
@@ -140,7 +139,6 @@
             margin-top: 5px;
         }
 
-        /* Styling alert untuk logout */
         .alert {
             animation: fadeOut 3s forwards;
         }
@@ -164,11 +162,10 @@
             </div>
         @endif
 
-        <!-- Perbaiki tampilan My Account -->
         <h2 class="page-title">My Account</h2>
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 py-3">
                 <div class="form-container">
                     <h4 class="text-center mb-4">Login</h4>
                     @if ($errors->has('email'))
@@ -191,7 +188,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 py-3">
                 <div class="form-container">
                     <h4 class="text-center mb-4">Register</h4>
                     @if ($errors->any())
@@ -230,8 +227,6 @@
         </div>
     </div>
 
-
-    <!-- Footer -->
     <footer>
         <p>&copy; 2024 Grow4Tomorrow</p>
     </footer>
