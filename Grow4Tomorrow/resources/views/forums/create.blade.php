@@ -13,7 +13,6 @@
                     <form action="{{ route('forums.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
-                        <!-- Title Field -->
                         <div class="form-group mb-4">
                             <label for="title" class="form-label">Title</label>
                             <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="Enter your post title" required>
@@ -21,8 +20,6 @@
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-
-                        <!-- Content Field -->
                         <div class="form-group mb-4">
                             <label for="content" class="form-label">Content</label>
                             <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="6" placeholder="Write your post content here..." required></textarea>
@@ -31,7 +28,6 @@
                             @enderror
                         </div>
 
-                        <!-- Image Upload Field -->
                         <div class="form-group mb-4">
                             <label for="image" class="form-label">Image (Optional)</label>
                             <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
@@ -41,9 +37,8 @@
                             @enderror
                         </div>
 
-                        <!-- Buttons -->
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-lg px-5">Publish</button>
+                            <button type="submit" class="btn btn-primary btn-lg px-5">Posting</button>
                             <a href="{{ route('forums.index') }}" class="btn btn-secondary btn-lg px-5">Cancel</a>
                         </div>
                     </form>

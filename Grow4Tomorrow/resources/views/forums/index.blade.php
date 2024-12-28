@@ -2,20 +2,13 @@
 
 @section('content')
 <div class="container-fluid p-0">
-    <!-- Group Header -->
     <div class="position-relative text-center text-white"
         style="background: url('{{ asset('images/group-cover.jpg') }}') no-repeat center center/cover; min-height: 400px; width: 100%;">
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.6);"></div>
 
-        <!-- Overlay -->
-        <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.6);"></div>
-
-        <!-- Group Details -->
         <div class="position-relative z-2 py-5">
-            <!-- Group Image -->
             <img src="{{ asset('images/komunitas.png') }}" alt="Group Image" class="rounded-circle mb-3"
                 style="width: 130px; height: 130px; object-fit: cover; border: 8px solid #ffffff;">
-
-            <!-- Group Title -->
             <h1 class="fw-bold" style="font-size: 2.8rem;">Grow4Tomorrow Community</h1>
             <p class="text-white-50">Join the conversation! Share ideas, learn together, and grow as a community.</p>
             <a href="{{ route('forums.create') }}" class="btn btn-light btn-lg mt-3">
@@ -26,15 +19,11 @@
 </div>
 
 <div class="container py-5">
-    <!-- Forum Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-
     </div>
 
-    <!-- Forum Posts -->
     @forelse($forums as $forum)
         <div class="card mb-4 shadow-sm">
-            <!-- Forum Image -->
             @if($forum->image)
             <a href="{{ route('forums.show', $forum) }}" >
                 <img src="{{ asset('storage/' . $forum->image) }}" alt="{{ $forum->title }}" 
@@ -43,13 +32,11 @@
             </a>
             @endif
 
-            <!-- Forum Content -->
             <div class="card-body">
                 <h5 class="card-title text-primary">{{ $forum->title }}</h5>
                 <p class="card-text text-muted">{{ Str::limit($forum->content, 150) }}</p>
             </div>
 
-            <!-- Actions -->
             <div class="card-footer bg-white d-flex justify-content-between align-items-center">
                 <small class="text-muted">Posted {{ $forum->created_at->diffForHumans() }}</small>
                 <a href="{{ route('forums.show', $forum) }}" class="btn btn-outline-primary btn-sm">
@@ -63,7 +50,7 @@
 </div>
 
 <style>
-    .card img {
+ .card img {
     transition: transform 0.2s ease-in-out;
 }
 

@@ -13,7 +13,6 @@
                         @csrf
                         @method('PUT')
 
-                        <!-- Title Field -->
                         <div class="form-group mb-4">
                             <label for="title" class="form-label">Title</label>
                             <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ $forum->title }}" placeholder="Enter post title" required>
@@ -22,7 +21,6 @@
                             @enderror
                         </div>
 
-                        <!-- Content Field -->
                         <div class="form-group mb-4">
                             <label for="content" class="form-label">Content</label>
                             <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="6" placeholder="Write your content here..." required>{{ $forum->content }}</textarea>
@@ -31,7 +29,6 @@
                             @enderror
                         </div>
 
-                        <!-- Image Upload Field -->
                         <div class="form-group mb-4">
                             <label for="image" class="form-label">Image</label>
                             <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
@@ -46,7 +43,6 @@
                             @enderror
                         </div>
 
-                        <!-- Buttons -->
                         <div class="d-flex justify-content-between">
                             <button type="submit" class="btn btn-success px-4">Update</button>
                             <a href="{{ route('forums.index') }}" class="btn btn-secondary px-4">Cancel</a>

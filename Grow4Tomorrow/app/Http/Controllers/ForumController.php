@@ -6,6 +6,7 @@ use App\Models\Forum;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class ForumController extends Controller
@@ -45,6 +46,12 @@ class ForumController extends Controller
         return view('forums.show', compact('forum'));
     }
 
+    public function exportToPDF($id)
+    {
+        $forum = Forum::findOrFail($id);
+        $pdf = Pdf::loadView('forums.pdf', compact('forum'));
+        return $pdf->download('forum_post.pdf');
+    }
     public function edit(Forum $forum)
     {
         return view('forums.edit', compact('forum'));
@@ -61,9 +68,7 @@ class ForumController extends Controller
         $forum->title = $request->title;
         $forum->content = $request->content;
 
-        // Update image jika ada file baru
         if ($request->hasFile('image')) {
-            // Hapus file lama
             if ($forum->image) {
                 Storage::disk('public')->delete($forum->image);
             }

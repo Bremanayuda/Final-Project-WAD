@@ -8,7 +8,7 @@ use App\Http\Controllers\ForumController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 #Login dan register
@@ -31,3 +31,4 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 #Route Forum
 Route::resource('forums', ForumController::class);
 Route::post('forums/{forum}/comments', [ForumController::class, 'storeComment'])->name('forums.comments.store');
+Route::get('/forums/{id}/export-pdf', [ForumController::class, 'exportToPDF'])->name('forums.export-pdf');

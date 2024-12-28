@@ -96,6 +96,13 @@
             margin-bottom: 30px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
+        .card-img-top {
+        transition: transform 0.5s ease-in-out;
+        }
+
+        .card-img-top:hover {
+        transform: scale(1.2);
+        }
 
         /* Styling bagian konten */
         .content-box h2 {
@@ -117,4 +124,5 @@
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
     </style>
+    
 @endsection
