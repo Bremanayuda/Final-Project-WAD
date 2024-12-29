@@ -32,6 +32,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::resource('education', EducationController::class)->middleware('auth');
 Route::get('/education', [EducationController::class, 'index'])->name('education.index');
 Route::get('education/{id}', [EducationController::class, 'show'])->name('education.show');
+Route::get('/education/{id}/export-pdf', [EducationController::class, 'exportPdf'])->name('education.export-pdf');
 
 
 Route::middleware('auth')->group(function () {
@@ -42,4 +43,6 @@ Route::middleware('auth')->group(function () {
 Route::resource('forums', ForumController::class);
 Route::post('forums/{forum}/comments', [ForumController::class, 'storeComment'])->name('forums.comments.store');
 Route::get('/forums/{id}/export-pdf', [ForumController::class, 'exportToPDF'])->name('forums.export-pdf');
+
+
 

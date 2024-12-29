@@ -34,6 +34,15 @@
                    transition: background-color 0.3s ease;">
             Kembali
         </a>
+        
+        <a href="{{ route('education.export-pdf', $education->id) }}" class="btn btn-danger btn-lg" 
+        style="border-radius: 25px; padding: 12px 30px; 
+               background-color: #dc3545; 
+               border-color: #c82333; 
+               text-decoration: none; 
+               transition: background-color 0.3s ease;">
+        Export PDF
+    </a>
     </div>
 </div>
 @endsection
