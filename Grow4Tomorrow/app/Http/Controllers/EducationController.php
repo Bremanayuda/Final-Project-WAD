@@ -10,9 +10,9 @@ class EducationController extends Controller
 {
     public function index()
     {
-        // Menampilkan data education dengan urutan descending berdasarkan id
+
         $education = Education::orderBy('id', 'desc')->get();
-        return view('education.index', compact('education')); // Menggunakan compact untuk mengirim variabel ke view
+        return view('education.index', compact('education')); 
     }
 
     public function create()
@@ -22,10 +22,10 @@ class EducationController extends Controller
 
     public function store(Request $request)
     {
-        // Aturan validasi input
+        
         $validatedData = $request->validate([
             'judul' => 'required|max:255',
-            'image' => 'required|image|max:1024|mimes:jpg,jpeg,png,webp',  // Maksimal ukuran 1MB
+            'image' => 'required|image|max:1024|mimes:jpg,jpeg,png,webp',  
             'desc' => 'required|min:20',
         ], [
             'judul.required' => 'Judul wajib diisi!',
@@ -33,31 +33,44 @@ class EducationController extends Controller
             'desc.required' => 'Deskripsi wajib diisi!',
         ]);
 
-        // Menyimpan data ke database
-        $education = new Education();
-        $education->judul = $validatedData['judul']; // Mendapatkan data yang sudah tervalidasi
-        $education->desc = $validatedData['desc'];  // Menyimpan deskripsi yang sudah tervalidasi
         
-        // Menyimpan gambar jika ada
+        $education = new Education();
+        $education->judul = $validatedData['judul']; 
+        $education->desc = $validatedData['desc'];  
+        
+        
         if ($request->hasFile('image')) {
-            // Menyimpan gambar baru
+            
             $imagePath = $request->file('image')->storeAs('artikel', $request->file('image')->getClientOriginalName(), 'public');
             $education->image = str_replace('public/', '', $imagePath); // Simpan nama file gambar tanpa prefix public/
         }
 
-        // Simpan ke database
+        
         $education->save();
 
-        // Redirect ke halaman index dengan pesan sukses
+        
         return redirect()->route('education.index')->with('success', 'Artikel berhasil disimpan!');
     }
 
     public function show($id)
     {
-        // Menampilkan detail artikel berdasarkan ID (belum diimplementasikan)
+        
         $education = Education::findOrFail($id);
         return view('education.show', compact('education'));
     }
+
+    public function exportPdf($id)
+{
+    
+    $education = Education::findOrFail($id);
+
+    
+    $pdf = \PDF::loadView('education.pdf', compact('education'))->setPaper('a4', 'portrait');
+
+    
+    return $pdf->download('Artikel - ' . $education->judul . '.pdf');
+}
+
 
     public function edit($id)
     {
