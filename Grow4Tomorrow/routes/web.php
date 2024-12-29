@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ForumController;
+use App\Http\Controllers\BenefitController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -43,6 +44,17 @@ Route::middleware('auth')->group(function () {
 Route::resource('forums', ForumController::class);
 Route::post('forums/{forum}/comments', [ForumController::class, 'storeComment'])->name('forums.comments.store');
 Route::get('/forums/{id}/export-pdf', [ForumController::class, 'exportToPDF'])->name('forums.export-pdf');
+
+Route::get('auth', [AuthController::class, 'showAuthForm'])->name('auth')->middleware('guest');
+Route::get('login', [AuthController::class, 'showAuthForm'])->name('auth');
+Route::post('login', [AuthController::class, 'login'])->name('login');
+Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register.form');
+Route::post('register', [AuthController::class, 'register'])->name('register');
+Route::post('/logout', function () {
+    Auth::logout(); 
+    return redirect('/auth')->with('success', 'You have been logged out.');
+})->name('logout');
+Route::resource('benefit', BenefitController::class);
 
 
 
