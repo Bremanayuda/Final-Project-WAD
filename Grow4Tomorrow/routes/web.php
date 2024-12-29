@@ -8,6 +8,8 @@ use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\BenefitController;
+use App\Http\Controllers\ShopController;
+use App\Models\shop;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -56,5 +58,16 @@ Route::post('/logout', function () {
 })->name('logout');
 Route::resource('benefit', BenefitController::class);
 
+#Route Shop
+Route::prefix('shop')->name('shop.')->group(function () {
+    Route::get('/', [ShopController::class, 'index'])->name('index');
+    Route::get('/create', [ShopController::class, 'getCreateForm'])->name('getCreateForm'); 
+    Route::post('/store', [ShopController::class, 'store'])->name('store');
+    Route::get('/{id}', [ShopController::class, 'show'])->name('show'); 
+    Route::get('/{id}/edit', [ShopController::class, 'getEditForm'])->name('getEditForm'); 
+    Route::put('/{id}', [ShopController::class, 'update'])->name('update'); 
+    Route::delete('/{id}', [ShopController::class, 'destroy'])->name('destroy'); 
+
+});
 
 
